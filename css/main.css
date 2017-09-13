@@ -1,0 +1,26 @@
+.header {
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 1rem;
+}
+
+.main {
+    padding: 1rem;
+    background-image: url("https://cdn.vdmsti.ru/image/2016/6m/1byp1/original-1q5.jpg");
+    background-position: center, center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 200px;
+}
+
+.info {
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 1rem;
+}
+
+.footer {
+    background-color: coral;
+    padding: 1rem;
+    color: whitesmoke;
+}
