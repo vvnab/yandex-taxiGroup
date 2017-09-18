@@ -49,7 +49,7 @@ section.main {
         background: transparentize(white, 0.15); // color: whitesmoke;
         margin: 1rem auto;
         padding: 2rem;
-        font-family: 'Play', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         .header {
             text-transform: uppercase;
             font-weight: bold;
@@ -65,7 +65,16 @@ section.main {
             font-weight: normal;
             color: red;
         }
-        .form {}
+        .form {
+            label {
+                input {
+                    font-size: 1rem;
+                    padding: 0.3rem;
+                    margin: 0.2rem 0 0.2rem -0.3rem;
+                    width: 100%;
+                }
+            }
+        }
     }
 }
 
