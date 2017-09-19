@@ -84,7 +84,8 @@ section.main {
                 margin-bottom: 1rem;
                 font-weight: 600;
                 font-size: 0.8rem;
-                input {
+                input,
+                select {
                     font-size: 1.1rem;
                     padding: 0.3rem;
                     margin: 0 -0.3rem;
@@ -109,6 +110,12 @@ section.info {
     .details {
         font-size: 1rem;
         margin: 0.5rem 0 1rem;
+    }
+}
+
+section.youtube {
+    .row {
+        margin: 2rem 0;
     }
 }
 
