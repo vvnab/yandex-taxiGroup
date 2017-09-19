@@ -11,6 +11,7 @@ $buttonBackground: orange;
     cursor: pointer;
     box-shadow: 0 0 5px lighten($buttonBackground, 5%);
     border-radius: 5px;
+    border: none;
 }
 
 body {
@@ -21,6 +22,12 @@ body {
 
 .wrap {
     margin: auto;
+}
+
+.button {
+    @extend %button;
+    margin: 0 auto; // width: 90%;
+    display: block;
 }
 
 section.header {
@@ -73,10 +80,14 @@ section.main {
                 width: 100%;
             }
             label {
+                display: block;
+                margin-bottom: 1rem;
+                font-weight: 600;
+                font-size: 0.8rem;
                 input {
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     padding: 0.3rem;
-                    margin: 0.5rem 0 0.5rem -0.3rem;
+                    margin: 0 -0.3rem;
                     width: 100%;
                 }
             }
@@ -88,6 +99,17 @@ section.info {
     text-align: center;
     background-color: whitesmoke;
     padding: 1rem;
+    i.fa {
+        font-size: 10rem;
+    }
+    .basic {
+        font-size: 1.5rem;
+        margin: 1rem 0 0;
+    }
+    .details {
+        font-size: 1rem;
+        margin: 0.5rem 0 1rem;
+    }
 }
 
 section.footer {
