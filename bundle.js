@@ -516,7 +516,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_main_scss__);
 
 
-// import "../../dist/index.html";
+// import "./smtp.js";
+
+window.postAjax = (url, data, success) => {
+    const params = JSON.stringify(data);
+    let xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+    xhr.open('POST', url);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState > 3 && xhr.status == 200) {
+            success(xhr.responseText);
+        }
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(params);
+    return xhr;
+}
+
+let sended = false;
+
+window.sendEmail = () => {
+    const data = {
+        town: document.getElementById("town").value,
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        auto: document.getElementById("auto").value,
+        year: document.getElementById("year").value
+    };
+
+    let validator = {
+        town: data.town != "",
+        name: data.name != "",
+        phone: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}$/.test(data.phone)
+    };
+
+    let valid = true;
+
+    for (let i in validator) {
+        if (!validator[i]) {
+            document.getElementById(`${i}-error`).classList.add("error");
+            valid = false;
+        } else {
+            document.getElementById(`${i}-error`).classList.remove("error");
+        }
+    }
+
+    if (!valid) return;
+
+    let message = {
+        from: "job@yandex.ru",
+        to: "taxi-099@mail.ru",
+        subject: `Яндекс.Такси ${data.town}`,
+        text: `
+Город: ${data.town}
+Имя: ${data.name}
+Телефон: ${data.phone}
+Автомобиль: ${data.auto}
+Год выпуска: ${data.year}
+        `
+    }
+    if (sended) {
+        console.log("sended true");
+        return;
+    } else {
+        sended = true;
+        setTimeout(() => {
+            sended = false
+        }, 1000);
+    }
+    postAjax("http://taxi-dev01.taxi21.ru:8003/utils/mail?mail-access-key=123456", message, result => {
+        document.getElementById("overlay").classList.add("show");
+    });
+}
 
 /***/ }),
 /* 3 */
@@ -698,7 +768,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Arimo|Open+Sans:400,600,700|Roboto:400,600|Ubuntu|Play:400,700);", ""]);
 
 // module
-exports.push([module.i, ".button, section.header .plugin {\n  background: orange;\n  color: white;\n  padding: 1rem;\n  font-weight: 400;\n  font-size: 1.2rem;\n  cursor: pointer;\n  box-shadow: 0 0 5px #ffae1a;\n  border-radius: 5px;\n  border: none; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'Roboto', sans-serif; }\n\n.wrap {\n  margin: auto; }\n\n.button {\n  margin: 0 auto;\n  display: block; }\n\nsection.header {\n  background-color: whitesmoke;\n  text-align: center;\n  padding: 1rem; }\n  section.header .yandex-taxi-logo {\n    width: 70%; }\n  section.header .phones {\n    font-size: 1.5rem; }\n\nsection.main {\n  padding: 1rem;\n  background-image: url(" + __webpack_require__(8) + ");\n  background-position: center, center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  min-height: 200px; }\n  section.main .box {\n    background: rgba(255, 255, 255, 0.85);\n    margin: 1rem auto;\n    padding: 2rem;\n    font-family: 'Open Sans', sans-serif; }\n    section.main .box .header {\n      text-transform: uppercase;\n      font-weight: bold;\n      font-size: 2.5rem; }\n    section.main .box .list {\n      text-transform: uppercase;\n      font-weight: normal;\n      font-size: 1.75rem;\n      line-height: 200%; }\n    section.main .box .footnote {\n      font-weight: normal;\n      color: red; }\n    section.main .box .form legend {\n      font-size: 1.5rem;\n      margin-bottom: 0.5rem;\n      text-align: center;\n      width: 100%; }\n    section.main .box .form label {\n      display: block;\n      margin-bottom: 0.5rem;\n      font-weight: 600;\n      font-size: 0.8rem; }\n      section.main .box .form label input,\n      section.main .box .form label select {\n        font-size: 1.1rem;\n        padding: 0.3rem;\n        margin: 0 -0.3rem;\n        width: 100%; }\n\nsection.info {\n  text-align: center;\n  background-color: whitesmoke;\n  padding: 1rem; }\n  section.info h1 {\n    font-family: 'Open Sans', sans-serif;\n    font-weight: normal;\n    font-size: 2.5rem; }\n  section.info i.fa {\n    font-size: 10rem; }\n  section.info .basic {\n    font-size: 1.5rem;\n    margin: 1rem 0 0; }\n  section.info .details {\n    font-size: 1rem;\n    margin: 0.5rem 0 1rem; }\n\nsection.youtube {\n  text-align: center;\n  padding: 1rem; }\n  section.youtube h1 {\n    font-family: 'Open Sans', sans-serif;\n    font-weight: normal;\n    font-size: 2.5rem; }\n  section.youtube .description {\n    margin-top: 1rem; }\n  section.youtube iframe {\n    width: 100%;\n    min-height: 200px;\n    margin: 0.5rem 0;\n    border: 1px solid #BBBBBB; }\n\nsection.footer {\n  background-color: coral;\n  padding: 1rem;\n  color: whitesmoke; }\n", ""]);
+exports.push([module.i, ".button, a.plugin {\n  background: orange;\n  color: white;\n  padding: 1rem;\n  font-weight: 400;\n  font-size: 1.2rem;\n  cursor: pointer;\n  box-shadow: 0 0 5px #ffae1a;\n  border-radius: 5px;\n  border: none; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'Roboto', sans-serif; }\n\n.wrap {\n  margin: auto; }\n\n.button {\n  margin: 0 auto;\n  display: block; }\n\na {\n  text-decoration: none;\n  color: inherit; }\n\na.plugin {\n  margin: 1rem 0;\n  display: block; }\n\nsection.header {\n  background-color: whitesmoke;\n  text-align: center;\n  padding: 1rem; }\n  section.header .yandex-taxi-logo {\n    width: 70%; }\n  section.header .phones {\n    margin: 1rem 0;\n    font-size: 1.5rem; }\n\nsection.main {\n  padding: 1rem;\n  background-image: url(" + __webpack_require__(8) + ");\n  background-position: center, center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  min-height: 200px; }\n  section.main .box {\n    background: rgba(255, 255, 255, 0.85);\n    margin: 1rem auto;\n    padding: 2rem;\n    font-family: 'Open Sans', sans-serif; }\n    section.main .box .header {\n      text-transform: uppercase;\n      font-weight: bold;\n      font-size: 2.7rem; }\n      @media screen and (max-width: 600px) {\n        section.main .box .header {\n          font-size: 2rem; } }\n    section.main .box .list {\n      text-transform: uppercase;\n      font-weight: normal;\n      font-size: 1.75rem;\n      line-height: 200%; }\n      @media screen and (max-width: 600px) {\n        section.main .box .list {\n          font-size: 1.2rem; } }\n    section.main .box .footnote {\n      font-weight: normal;\n      color: red; }\n    section.main .box .form .error {\n      color: red; }\n    section.main .box .form legend {\n      font-size: 1.5rem;\n      margin-bottom: 0.5rem;\n      text-align: center;\n      width: 100%; }\n    section.main .box .form label {\n      display: block;\n      margin-bottom: 0.5rem;\n      font-weight: 600;\n      font-size: 0.8rem; }\n      section.main .box .form label input,\n      section.main .box .form label select {\n        font-size: 1.1rem;\n        padding: 0.3rem;\n        margin: 0 -0.3rem;\n        width: 100%; }\n\nsection.info {\n  text-align: center;\n  background-color: whitesmoke;\n  padding: 1rem; }\n  section.info h1 {\n    font-family: 'Open Sans', sans-serif;\n    font-weight: normal;\n    font-size: 2.5rem; }\n  section.info i.fa {\n    font-size: 10rem; }\n  section.info .basic {\n    font-size: 1.5rem;\n    margin: 1rem 0 0; }\n  section.info .details {\n    font-size: 1rem;\n    margin: 0.5rem 0 1rem; }\n\nsection.youtube {\n  text-align: center;\n  padding: 1rem; }\n  section.youtube h1 {\n    font-family: 'Open Sans', sans-serif;\n    font-weight: normal;\n    font-size: 2.5rem; }\n  section.youtube .description {\n    margin-top: 1rem; }\n  section.youtube iframe {\n    width: 100%;\n    min-height: 200px;\n    margin: 0.5rem 0;\n    border: 1px solid #BBBBBB; }\n\nsection.footer {\n  background-color: #020418;\n  padding: 3rem 1rem;\n  color: whitesmoke; }\n\nsection.overlay {\n  background-color: rgba(0, 0, 0, 0.75);\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  display: none; }\n  section.overlay.show {\n    display: flex; }\n  section.overlay .dialog {\n    padding: 3rem;\n    background-color: whitesmoke;\n    font-size: 2rem;\n    margin: auto; }\n", ""]);
 
 // exports
 

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://use.fontawesome.com/63207561e3.js"></script>
+  <!-- <script src="https://smtpjs.com/smtp.js"></script> -->
   <script src="./bundle.js"></script>
   <title>Работа в Яндекс.Такси</title>
 </head>
@@ -14,15 +15,15 @@
   <section class="header">
     <div class="wrap container">
       <div class="row center-sm middle-sm">
-        <div class="col-sm-4">
+        <div class="col-md-4 col-xs-12">
           <img src="images/1012cda521bcb1ef517d0807d9866f4a.png" alt="" class="yandex-taxi-logo" />
         </div>
-        <div class="col-sm-4">
-          <div class="plugin">
+        <div class="col-md-4 col-xs-12">
+          <a class="plugin" href="#form">
             Подключиться к <br> Яндекс.Такси
-          </div>
+            </a>
         </div>
-        <div class="col-sm-4">
+        <div class="col-md-4 col-xs-12">
           <div class="phones">
             +7 (8212) 550-999
           </div>
@@ -30,6 +31,7 @@
       </div>
     </div>
   </section>
+  <a name="form"></a>
   <section class="main">
     <div class="wrap container">
       <div class="row middle-xs">
@@ -55,43 +57,43 @@
                 Отправка заявки
               </legend>
               <label>
-                                <input list="towns" placeholder="Ваш город" />
-                                <datalist id="towns">
-                                    <option value="Москва"></option>
-                                    <option value="Санкт-Петербург"></option>
-                                    <option value="Нижний Новгород"></option>
-                                    <option value="Пермь"></option>
-                                    <option value="Волгоград"></option>
-                                    <option value="Киров"></option>
-                                    <option value="Архангельск"></option>
-                                    <option value="Вологда"></option>
-                                    <option value="Северодвинск"></option>
-                                    <option value="Череповецк"></option>
-                                    <option value="Тверь"></option>
-                                  </datalist>
-                                Выберите город
-                            </label>
+                <input list="towns" id="town" placeholder="Ваш город" />
+                <datalist id="towns">
+                    <option value="Москва"></option>
+                    <option value="Санкт-Петербург"></option>
+                    <option value="Казань"></option>
+                    <option value="Нижний Новгород"></option>
+                    <option value="Пермь"></option>
+                    <option value="Волгоград"></option>
+                    <option value="Киров"></option>
+                    <option value="Архангельск"></option>
+                    <option value="Вологда"></option>
+                    <option value="Северодвинск"></option>
+                    <option value="Череповецк"></option>
+                    <option value="Тверь"></option>
+                  </datalist>
+                  <span id="town-error">Выберите город (обязательно)</span>
+              </label>
               <label>
-                                <input type="text" placeholder="Ваше имя" />
-                                Ваше имя (обязательно)
-                            </label>
+                <input type="text" placeholder="Ваше имя" id="name"/>
+                <span id="name-error">Ваше имя (обязательно)</span>
+              </label>
               <label>
-                                <input type="text" placeholder="+7 (xxx) xxx-xx-xx" />
-                                 Номер телефона (обязательно)
-                            </label>
+                <input type="text" placeholder="+7 (xxx) xxx-xx-xx" id="phone"/>
+                <span id="phone-error">Номер телефона (обязательно)</span>
+              </label>
               <label>
-                                <input type="text" placeholder="Марка автомобиля" />
-                                Марка автомобиля
-                            </label>
+                <input type="text" placeholder="Марка автомобиля" id="auto"/>
+                <span id="auto-error">Марка автомобиля</span>
+              </label>
               <label>
-                                <input type="text" placeholder="Год выпуска автомобиля" />
-                                Год выпуска автомобиля
-                            </label>
+                <input type="text" placeholder="Год выпуска автомобиля" id="year"/>
+                <span id="year-error">Год выпуска автомобиля</span>
+              </label>
               <br>
-              <button class="button">Отправить заявку</button>
+              <button class="button" onclick="sendEmail()">Отправить заявку</button>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -192,15 +194,32 @@
           <iframe src="https://www.youtube.com/embed/oOGG6972us0" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
+      <div class="row center-xs middle-xs">
+        <div class="col-md-4 col-xs-12">
+          <a class="plugin" href="#form">
+                Подключиться к <br> Яндекс.Такси
+              </a>
+        </div>
+      </div>
     </div>
   </section>
   <section class="footer">
     <div class="wrap container">
-      <div class="col ">
-        <strong>
-          +7 (8212) 550-999
-        </strong>
+      <div class="row center-xs- bottom-xs">
+        <div class="col-xs-6">
+          Изготовление сайтов <a href="mailto:vvnab@mail.ru">vvnab@mail.ru</a>
+        </div>
+        <div class="col-xs-6" style="text-align: right">
+          <strong style="font-size: 2rem;">
+            +7 (8212) 550-999
+          </strong>
+        </div>
       </div>
+    </div>
+  </section>
+  <section class="overlay" id="overlay">
+    <div class="dialog">
+      Ваша заявка успешно отправлена!
     </div>
   </section>
 <script type="text/javascript" src="bundle.js"></script></body>

@@ -29,6 +29,16 @@ body {
     margin: 0 auto; // width: 90%;
     display: block;
 }
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.plugin {
+    margin: 1rem 0;
+    @extend %button;
+    display: block;
+}
 
 section.header {
     background-color: $headerBackground;
@@ -37,10 +47,8 @@ section.header {
     .yandex-taxi-logo {
         width: 70%;
     }
-    .plugin {
-        @extend %button;
-    }
     .phones {
+        margin: 1rem 0;
         font-size: 1.5rem;
     }
 }
@@ -60,12 +68,18 @@ section.main {
         .header {
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 2.5rem;
+            font-size: 2.7rem;
+            @media screen and (max-width: 600px) {
+                font-size: 2rem;
+            }
         }
         .list {
             text-transform: uppercase;
             font-weight: normal;
             font-size: 1.75rem;
+            @media screen and (max-width: 600px) {
+                font-size: 1.2rem;
+            }
             line-height: 200%;
         }
         .footnote {
@@ -73,6 +87,9 @@ section.main {
             color: red;
         }
         .form {
+            .error {
+                color: red;
+            }
             legend {
                 font-size: 1.5rem;
                 margin-bottom: 0.5rem;
@@ -138,7 +155,27 @@ section.youtube {
 }
 
 section.footer {
-    background-color: coral;
-    padding: 1rem;
+    background-color: #020418;
+    padding: 3rem 1rem;
     color: whitesmoke;
+}
+
+section.overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+    &.show {
+        display: flex;
+    }
+    .dialog {
+        padding: 3rem;
+        background-color: whitesmoke;
+        font-size: 2rem;
+        margin: auto;
+        // display: flex;
+    }
 }
