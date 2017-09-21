@@ -581,9 +581,9 @@ window.sendEmail = () => {
         sended = true;
         setTimeout(() => {
             sended = false
-        }, 1000);
+        }, 5000);
     }
-    postAjax("http://taxi-dev01.taxi21.ru:8003/utils/mail?mail-access-key=123456", message, result => {
+    postAjax("https://api-driver.taxi21.ru/utils/mail?mail-access-key=123456", message, result => {
         document.getElementById("overlay").classList.add("show");
     });
 }
