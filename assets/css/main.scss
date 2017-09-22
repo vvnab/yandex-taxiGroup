@@ -2,6 +2,15 @@
 $headerBackground: whitesmoke;
 $yandexColor: #ffcd00;
 $buttonBackground: orange;
+
+@keyframes _color
+{
+    0%   {background: $buttonBackground;}
+    10%   {background: red;}
+    50%   {background: $buttonBackground;}
+    // 100%   {background: red;}
+}
+
 %button {
     background: $buttonBackground;
     color: white;
@@ -9,7 +18,7 @@ $buttonBackground: orange;
     font-weight: 400;
     font-size: 1.2rem;
     cursor: pointer;
-    box-shadow: 0 0 5px lighten($buttonBackground, 5%);
+    // box-shadow: 0 0 5px lighten($buttonBackground, 5%);
     border-radius: 5px;
     border: none;
 }
@@ -38,6 +47,7 @@ a.plugin {
     margin: 1rem 0;
     @extend %button;
     display: block;
+    animation: _color 1s infinite;
 }
 
 section.header {
@@ -50,6 +60,7 @@ section.header {
     .phones {
         margin: 1rem 0;
         font-size: 1.5rem;
+        line-height: 150%;
     }
 }
 
