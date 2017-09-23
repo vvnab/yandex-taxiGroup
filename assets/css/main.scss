@@ -83,6 +83,9 @@ section.main {
             @media screen and (max-width: 600px) {
                 font-size: 2rem;
             }
+            @media screen and (max-width: 400px) {
+                font-size: 1.6rem;
+            }
         }
         .list {
             text-transform: uppercase;
@@ -90,6 +93,9 @@ section.main {
             font-size: 1.75rem;
             @media screen and (max-width: 600px) {
                 font-size: 1.2rem;
+            }
+            @media screen and (max-width: 400px) {
+                font-size: 1.0rem;
             }
             line-height: 200%;
         }
