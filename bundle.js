@@ -546,7 +546,8 @@ window.sendEmail = () => {
     let validator = {
         town: data.town != "",
         name: data.name != "",
-        phone: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}$/.test(data.phone)
+        // phone: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}$/.test(data.phone)
+        phone: data.phone && data.phone.length > 11
     };
 
     let valid = true;
