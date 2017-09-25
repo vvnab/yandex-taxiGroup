@@ -1,6 +1,12 @@
 import "../css/flexboxgrid.scss";
 import "../css/main.scss";
-// import "./smtp.js";
+import "./imask.js";
+
+var phoneMask = new IMask(
+    document.getElementById('phone'), {
+        mask: '+{7} (000) 000-00-00'
+    });
+
 
 window.postAjax = (url, data, success) => {
     const params = JSON.stringify(data);
