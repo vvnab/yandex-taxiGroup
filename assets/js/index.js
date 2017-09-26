@@ -1,6 +1,5 @@
-import "../css/flexboxgrid.scss";
+// import "../css/flexboxgrid.scss";
 import "../css/main.scss";
-// import "https://use.fontawesome.com/63207561e3.js";
 import "./imask.js";
 
 var phoneMask = new IMask(
