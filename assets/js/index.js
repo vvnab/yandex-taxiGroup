@@ -1,30 +1,16 @@
 // import "../css/flexboxgrid.scss";
 import "../css/main.scss";
 import "./imask.js";
+import "whatwg-fetch";
 
 var phoneMask = new IMask(
     document.getElementById('phone'), {
         mask: '+{7} (000) 000-00-00'
     });
 
-
-window.postAjax = (url, data, success) => {
-    const params = JSON.stringify(data);
-    let xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-    xhr.open('POST', url);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState > 3 && xhr.status == 200) {
-            success(xhr.responseText);
-        }
-    };
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(params);
-    return xhr;
-}
-
 let sended = false;
 
-window.sendEmail = () => {
+let sendEmail = () => {
     const data = {
         town: document.getElementById("town").value,
         name: document.getElementById("name").value,
@@ -55,7 +41,8 @@ window.sendEmail = () => {
 
     let message = {
         from: "job@yandex.ru",
-        to: "taxi-099@mail.ru",
+        // to: "taxi-099@mail.ru",
+        to: "vvnab@mail.ru",
         subject: `Яндекс.Такси ${data.town}`,
         text: `
 Город: ${data.town}
@@ -74,7 +61,16 @@ window.sendEmail = () => {
             sended = false
         }, 5000);
     }
-    postAjax("https://api-driver.taxi21.ru/utils/mail?mail-access-key=123456", message, result => {
-        document.getElementById("overlay").classList.add("show");
-    });
+    fetch("https://api-driver.taxi21.ru/utils/mail?mail-access-key=123456", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(message)
+    })
+        .then(result => document.getElementById("overlay").classList.add("show"))
+        .catch(error => console.error(error));
 }
+
+document.getElementById("sendEmail").addEventListener("click", sendEmail, false);

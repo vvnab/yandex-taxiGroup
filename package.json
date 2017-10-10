@@ -4,7 +4,8 @@
   "description": "Яндекс-таксиГрупп.рф\r [http://vvnab.github.io/yandex-taxiGroup/](http://vvnab.github.io/yandex-taxiGroup/)",
   "main": "index.js",
   "dependencies": {
-    "webpack": "^3.6.0"
+    "webpack": "^3.6.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "css-loader": "^0.28.7",

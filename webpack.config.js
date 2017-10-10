@@ -24,12 +24,6 @@ module.exports = {
                 outputPath: 'images/'
             }
         }, {
-            test: /\.(pdf)$/,
-            loader: 'file-loader',
-            options: {
-                outputPath: 'docs/'
-            }
-        }, {
             test: /\.html$/,
             loader: 'html-loader'
         }]
@@ -40,7 +34,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         // hot: true,
-        host: "localhost",
+        host: "0.0.0.0",
         inline: true,
         // compress: true,
         port: 9000
