@@ -24,6 +24,12 @@ module.exports = {
                 outputPath: 'images/'
             }
         }, {
+            test: /\.(pdf)$/,
+            loader: 'file-loader',
+            options: {
+                outputPath: 'docs/'
+            }
+        }, {
             test: /\.html$/,
             loader: 'html-loader'
         }]
