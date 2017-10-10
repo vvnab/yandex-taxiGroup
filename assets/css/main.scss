@@ -103,6 +103,14 @@ section.main {
             font-weight: normal;
             color: red;
         }
+        .oferta {
+                font-weight: 600;
+                margin: 0.5rem 0 -1rem;
+                // color: red;
+                small {
+                    vertical-align: baseline;
+                }
+        }
         .form {
             .error {
                 color: red;
