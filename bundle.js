@@ -118,8 +118,8 @@ let sendEmail = () => {
 
     let message = {
         from: "job@yandex.ru",
-        // to: "taxi-099@mail.ru",
-        to: "vvnab@mail.ru",
+        to: "taxi-099@mail.ru",
+        // to: "vvnab@mail.ru",
         subject: `Яндекс.Такси ${data.town}`,
         text: `
 Город: ${data.town}
